@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<title>MovieApp Login</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
+<body style="background-color:#e3f2fd;">
+
+	<!-- <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
+	  <div class="container-fluid">
+	    <a class="navbar-brand" href="#">Movie App</a>
+	    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+	      <span class="navbar-toggler-icon"></span>
+	    </button>
+	    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+	      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+	        <li class="nav-item">
+	          <a class="nav-link active" aria-current="page" href="/">Home</a>
+	        </li>
+	        <li class="nav-item">
+	          <a class="nav-link" href="/movies">Movies</a>
+	        </li>
+	        <li class="nav-item dropdown">
+	          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+	            Dropdown
+	          </a>
+	          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+	            <li><a class="dropdown-item" href="#">Action</a></li>
+	            <li><a class="dropdown-item" href="#">Another action</a></li>
+	            <li><hr class="dropdown-divider"></li>
+	            <li><a class="dropdown-item" href="#">Something else here</a></li>
+	          </ul>
+	        </li>
+	        <li class="nav-item">
+	          <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+	        </li>
+	      </ul>
+	      <form class="d-flex">
+	        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+	        <button class="btn btn-outline-dark" type="submit">Search</button>
+	      </form>
+	    </div>
+	  </div>
+	</nav> -->
+
+	<!-- <div style="background-color:#FA8072;height:50px;">
+		<h3 class="text-center pt-2">MovieApp Login</h3>
+	</div> -->
+	<div class="container-fluid">
+		<div class="row col-lg-4 col-lg-offset-4" style="margin-top: 80px;background-color:#fff;padding:20px;border:solid 1px #ddd;">
+			<!-- <img th:src="@{/images/login.jpg}" class="img-responsive center-block" width="300" height="300" alt="Logo" /> -->
+			<form th:action="@{/login}" method="POST" class="form-signin">
+				<h3 class="form-signin-heading" th:text="Login"></h3>
+				<br /> <input type="text" id="email" name="email" th:placeholder="Email" class="form-control" /> <br />
+				<input type="password" th:placeholder="Password" id="password" name="password" class="form-control" /> <br />
+
+				<div align="center" th:if="${param.error}">
+					<p style="font-size: 20; color: #A0A0A0;">Email or Password is invalid.</p>
+				</div>
+				<button class="btn btn-lg text-white" name="Submit" value="Login" type="Submit" th:text="Login" style="margin-right:10px;background-color:#e3f2fd;"></button>
+				<a href="/recover-password">Forgot password?</a>
+				<a class="btn btn-outline-light" href="/">Back</a>
+			</form>
+		</div>
+	</div>
+</body>
+</html>

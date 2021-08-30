@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Movie App</title>
+  
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+  
+  <style>
+	
+	/* Style the tab */
+	.tab {
+		overflow: hidden;
+		background-color: #EFF9FF;
+		width: 300px;
+		margin: 5px 280px;
+	}
+	
+	/* Style the buttons inside the tab */
+	.tab button {
+		background-color: inherit;
+		float: left;
+		border: none;
+		outline: none;
+		cursor: pointer;
+		padding: 4px 6px;
+		transition: 0.3s;
+		border: 1px solid white;
+		border-radius:25px;
+		color: gray;
+	}
+	
+	/* Change background color of buttons on hover */
+	.tab button:hover {
+		background-color: #EFF9FF;
+		color:white;
+	}
+	
+	/* Create an active/current tablink class */
+	.tab button.active {
+		background-color: #e3f2fd;
+	}
+	
+	/* Style the tab content */
+	.tabcontent {
+		display: none;
+		padding: 6px 12px;
+		border-top: none;
+	}
+	
+	.lg-rg {
+		background-color: #EFF9FF;
+		float: left;
+		border: none;
+		outline: none;
+		cursor: pointer;
+		padding: 4px 6px;
+		transition: 0.3s;
+		border: 1px solid white;
+		border-radius:25px;
+		color: gray;
+		text-decoration:none;
+	}
+  </style>
+  
+</head>
+<body class="w-75 mx-auto my-2" style="background-color: #EFF9FF;">
+
+	<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
+	  <div class="container-fluid">
+	    <a class="navbar-brand" href="#">Movie App</a>
+	    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+	      <span class="navbar-toggler-icon"></span>
+	    </button>
+	    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+	      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+	        <li class="nav-item">
+	          <a class="nav-link active" aria-current="page" href="/">Home</a>
+	        </li>
+	        <li class="nav-item">
+	          <a class="nav-link" href="/movies">Movies</a>
+	        </li>
+	        <li class="nav-item">
+	          <a class="nav-link" href="/admin" tabindex="-1">Admin-Panel</a>
+	        </li>
+	      </ul>
+	      <form class="d-flex" th:action="@{/search/(object)}" th:name="word">
+	        <input class="form-control me-2" name="word" type="text" placeholder="Search" aria-label="Search">
+	        <button class="btn btn-outline-dark" type="submit">Search</button>
+	      </form>
+	    </div>	
+	  </div>
+	</nav>
+	<div class="d-flex justify-content-end">
+		<a href="/login" class="lg-rg mt-2 mb-2 btn-sm">Log in</a>
+		<a href="/register" class="lg-rg mt-2 mb-2 btn-sm">Register</a>
+	</div>
+	
+	<!-- <div class="row row-cols-1 row-cols-md-5 g-4">
+	  <div class="col" th:each="pop : ${pops}">
+	    <div class="card border-0" style="background-color:#EFF9FF;">
+	      <img th:src="@{${pop.imgSrc}}" class="card-img-top" alt=th:text="${pop.title}">style="width:32px;height:44px;"
+	      <div class="card-body">
+	        <h6 class="card-title" th:text=${pop.title}>Card title</h6>
+	      </div>
+	    </div>
+	  </div>
+	</div> -->
+	
+	<div>
+		<h4 style="float:left;">Popüler Filmler ve Diziler</h4>
+		<div class="tab">
+			<button id="mbutton" class="tablinks" onclick="openCity(event, 'movies')">Filmler</button>
+			<button class="tablinks mx-1" onclick="openCity(event, 'shows')">Diziler</button>
+		</div>
+
+		<div id="movies" class="tabcontent" style="float:left;">
+			<div class="row row-cols-1 row-cols-md-5 g-4">
+			  <div class="col" th:each="movie : ${movies}">
+			    <div class="card border-0" style="background-color:#EFF9FF;">
+			      <a th:href="@{/ht/{id}(id=${movie.imdbid})}"><img th:src="@{${movie.imgSource}}" class="card-img-top" alt=th:text="${pop.title}"></a>
+			      <div class="card-body">
+					<h6 class="card-title" th:text=${movie.title}></h6>
+			      </div>
+			    </div>
+			  </div>
+			</div>
+		</div>
+	
+		<div id="shows" class="tabcontent" style="float:left;">
+			<div class="row row-cols-1 row-cols-md-5 g-4">
+			  <div class="col" th:each="show : ${shows}">
+			    <div class="card border-0" style="background-color:#EFF9FF;">
+			      <a th:href="@{/shows/{id}(id=${show.tmdbId})}"><img th:src="@{${show.imgSrc}}" class="card-img-top" alt=th:text="${show.title}"></a><!--  style="width:32px;height:44px;" -->
+			      <div class="card-body">
+			        <h6 class="card-title" th:text=${show.title}></h6>
+			        <!-- <p class="card-text" th:text=${show.score}></p> -->
+			      </div>
+			    </div>
+			  </div>
+			</div>
+		</div>
+	
+	</div>
+
+	<script>
+		function openCity(evt, cityName) {
+			var i, tabcontent, tablinks;
+			tabcontent = document.getElementsByClassName("tabcontent");
+			for (i = 0; i < tabcontent.length; i++) {
+				tabcontent[i].style.display = "none";
+			}
+			tablinks = document.getElementsByClassName("tablinks");
+			for (i = 0; i < tablinks.length; i++) {
+				tablinks[i].className = tablinks[i].className.replace(
+						" active", "");
+			}
+			document.getElementById(cityName).style.display = "block";
+			evt.currentTarget.className += " active";
+		}
+		document.getElementById("mbutton").click();
+	</script>
+	
+	
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
+</body>
+</html>
