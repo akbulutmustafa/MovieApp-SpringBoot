@@ -21,4 +21,4 @@ A to-do list web app. You can add, edit and delete the list items.
 ### Tralier
 ![Alt Text](https://github.com/akbulutmustafa/MovieApp-SpringBoot/blob/main/src/main/resources/static/images/fragman.PNG)
 ### Admin
-![Alt Text](https://github.com/akbulutmustafa/MovieApp-SpringBoot/blob/main/src/main/resources/static/images/admiin.PNG)
+![Alt Text](https://github.com/akbulutmustafa/MovieApp-SpringBoot/blob/main/src/main/resources/static/images/admin.PNG)
