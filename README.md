@@ -1,4 +1,4 @@
-# Spring-ToDoList
+# Spring-MovieApp
 MovieApp you can register and add movies or tv shows to your page. You can mark the listings as watched. You can watch trailers.
 ### Home Page - Movie Tab
 ![Alt Text](https://github.com/akbulutmustafa/MovieApp-SpringBoot/blob/main/src/main/resources/static/images/home-movie.PNG)
